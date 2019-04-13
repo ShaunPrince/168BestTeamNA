@@ -28,7 +28,11 @@ public class DamagableEntity : MonoBehaviour
         if (incomingBullet != null)
         {
             this.TakeDamage(incomingBullet.dmg);
-            Destroy(incomingBullet);
+            Destroy(incomingBullet.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
         }
     }
 
