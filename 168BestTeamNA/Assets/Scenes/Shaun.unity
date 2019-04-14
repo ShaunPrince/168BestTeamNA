@@ -554,6 +554,7 @@ MonoBehaviour:
   minTImeBetweenSpawns: 1
   widthOfPlaySpace: 40
   heightOfPlaySpace: 20
+  astroidTravelSPeed: 0.05
   astroidPrefab: {fileID: 1387155395286720229, guid: 1b295081cd562c54e86380c0e70e27ec,
     type: 3}
 --- !u!1001 &1387155395497086466

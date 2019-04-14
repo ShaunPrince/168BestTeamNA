@@ -10,6 +10,8 @@ public class EnemyController : MonoBehaviour
     public float widthOfPlaySpace;
     public float heightOfPlaySpace;
 
+    public float astroidTravelSPeed;
+
     public GameObject astroidPrefab;
 
     private float timeSinceLastSpawn;
@@ -34,7 +36,8 @@ public class EnemyController : MonoBehaviour
         if(timeSinceLastSpawn >= currentTimeBetweenSpawns)
         {
             //Spawn an astroid at the top of the playspace and somewhere between the horizontal boundries
-            Instantiate(astroidPrefab,new Vector3(Random.Range(-1f,1f) * widthOfPlaySpace/2, heightOfPlaySpace, 0),Quaternion.identity);
+            GameObject newAstroid = Instantiate(astroidPrefab,new Vector3(Random.Range(-1f,1f) * widthOfPlaySpace/2, heightOfPlaySpace, 0),Quaternion.identity);
+            newAstroid.GetComponent<Rigidbody>().velocity = GenerateRandomDirectionToGround(newAstroid.transform.position) * astroidTravelSPeed;
             currentTimeBetweenSpawns = Random.Range(minTImeBetweenSpawns, maxTimeBetweenSpawns);
             timeSinceLastSpawn = 0;
         }
@@ -44,5 +47,15 @@ public class EnemyController : MonoBehaviour
         }
 
 
+    }
+
+    private Vector3 GenerateRandomDirectionToGround(Vector3 curPosition)
+    {
+        //Debug.Log(curPosition);
+        Vector3 dest = this.transform.TransformPoint(new Vector3((Random.Range(-1f, 1f) * widthOfPlaySpace / 2), 0, 0));
+        //Debug.Log(dest);
+        //Debug.Log(dest - curPosition);
+        Debug.DrawRay(curPosition, (dest - curPosition) * 100, Color.blue, 10);
+        return (dest - curPosition); 
     }
 }
