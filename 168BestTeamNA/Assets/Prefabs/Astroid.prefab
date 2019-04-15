@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e51dd4b130ada5e44b288e83e268f27c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curColor: 0
+  curColor: 4
   health: 1
 --- !u!1 &1387155396661351202
 GameObject:
@@ -121,7 +121,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a92f816d19a6acb4b837dbab13d0a256, type: 2}
+  - {fileID: 2100000, guid: 2ba73ba32ac87074ebe38bc03e4834be, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

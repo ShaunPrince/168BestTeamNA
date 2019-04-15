@@ -24,24 +24,18 @@ public class DamagableEntity : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Bullet incomingBullet = collision.gameObject.GetComponent<Bullet>();
-        if (incomingBullet != null)
-        {
-            this.TakeDamage(incomingBullet.damage);
-            Destroy(incomingBullet.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
     }
 
-    public virtual void TakeDamage(float dmg)
+    public virtual void TakeDamage(float dmg , EColor colorOfDamageSource)
     {
-        this.health -= dmg;
-        if (this.health <= 0)
+        if(colorOfDamageSource == curColor || curColor == EColor.Gray)
         {
-            Destroy(this.gameObject);
+            this.health -= dmg;
+            if (this.health <= 0)
+            {
+                Destroy(this.gameObject);
+            }
         }
+
     }
 }

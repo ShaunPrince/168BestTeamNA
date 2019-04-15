@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public int damage;
     public float yVelocity;
+    public DamagableEntity.EColor curColor;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +28,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<DamagableEntity>() != null)
         {
-            collision.gameObject.GetComponent<DamagableEntity>().TakeDamage(damage);
+            collision.gameObject.GetComponent<DamagableEntity>().TakeDamage(damage, curColor);
             Destroy(this.gameObject);
         }
 
