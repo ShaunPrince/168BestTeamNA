@@ -27,7 +27,7 @@ public class DamagableEntity : MonoBehaviour
         Bullet incomingBullet = collision.gameObject.GetComponent<Bullet>();
         if (incomingBullet != null)
         {
-            this.TakeDamage(incomingBullet.dmg);
+            this.TakeDamage(incomingBullet.damage);
             Destroy(incomingBullet.gameObject);
         }
         else
