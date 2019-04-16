@@ -5,23 +5,19 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public int damage;
-    public float yVelocity;
+    //public float yVelocity;
     public DamagableEntity.EColor curColor;
+
     // Start is called before the first frame update
     void Start()
     {
-        this.GetComponent<Rigidbody>().velocity = new Vector3(0, yVelocity, 0);
+
     }
 
     // Update is called once per frame
     void Update()
     {
 
-    }
-
-    public int GetDamage()
-    {
-        return damage;
     }
 
     private void OnCollisionEnter(Collision collision)

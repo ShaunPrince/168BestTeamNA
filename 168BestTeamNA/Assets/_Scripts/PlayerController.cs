@@ -8,10 +8,12 @@ public class PlayerController : MonoBehaviour
     public Transform bulletPrefab;
 
     private Rigidbody rb;
+    private int bulletSpeed;
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
+        bulletSpeed = 20;
     }
 
     // Update is called once per frame
@@ -24,7 +26,7 @@ public class PlayerController : MonoBehaviour
     public void UpdatePlayerState()
     {
         UpdateMovement();
-        if (Input.GetKeyDown("space"))
+        if (Input.GetMouseButtonDown(0))
             Shoot();
     }
 
@@ -36,6 +38,24 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot()
     {
-        Transform bullet = GameObject.Instantiate(bulletPrefab, this.transform.position + Vector3.up, Quaternion.identity);
+        Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Mathf.Abs(Camera.main.transform.position.z));
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        Debug.Log(mousePos);
+        //Vector3 bulletVelocity = GetVelocity(mousePos);
+        Vector3 targetPos = mousePos - this.transform.position;
+        GameObject bullet = GameObject.Instantiate(bulletPrefab, this.transform.position + Vector3.up, Quaternion.LookRotation(targetPos, Vector3.up)).gameObject;
+        Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
+        bulletRb.velocity = bullet.transform.forward * bulletSpeed;
+    }
+
+    private Vector3 GetVelocity(Vector3 mousePos)
+    {
+        Vector3 pos = this.transform.position;
+        //float angle = Vector3.Angle(pos, mousePos);
+        float angle = Mathf.Atan2(mousePos.y - pos.y, mousePos.x - pos.x) * 180 / Mathf.PI;
+        float x = bulletSpeed * Mathf.Cos(angle);
+        float y = bulletSpeed * Mathf.Sin(angle);
+        //float c = Vector3.Distance(this.transform.position, mousePos);
+        return new Vector3 (x, y, 0.0f);
     }
 }
