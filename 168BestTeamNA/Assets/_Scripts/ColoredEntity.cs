@@ -36,8 +36,9 @@ public class ColoredEntity : MonoBehaviour
         
     }
 
-    public void ReColor()
+    public void ReColor(EColor newColor)
     {
+        curColor = newColor;
         if (this.gameObject.GetComponentInChildren<Renderer>() != null)
         {
             this.gameObject.GetComponentInChildren<Renderer>().material = materialList[(int)curColor];

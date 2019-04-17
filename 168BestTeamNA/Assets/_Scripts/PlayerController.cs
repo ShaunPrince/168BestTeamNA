@@ -47,8 +47,7 @@ public class PlayerController : ColoredEntity
         //Vector3 bulletVelocity = GetVelocity(mousePos);
         Vector3 targetPos = mousePos - this.transform.position;
         GameObject bullet = GameObject.Instantiate(bulletPrefab, this.transform.position + Vector3.up, Quaternion.LookRotation(targetPos, Vector3.up)).gameObject;
-        bullet.GetComponent<Bullet>().curColor = curColor;
-        bullet.GetComponent<Bullet>().ReColor();
+        bullet.GetComponent<Bullet>().ReColor(curColor);
         Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
         bulletRb.velocity = bullet.transform.forward * bulletSpeed;
     }
