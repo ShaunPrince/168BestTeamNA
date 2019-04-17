@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : ColoredEntity
 {
     public int moveSpeed;
     public Transform bulletPrefab;
+
+    public Camera myCam;
 
     private Rigidbody rb;
     private int bulletSpeed;
@@ -20,6 +22,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         UpdatePlayerState();
+        myCam.transform.position = new Vector3(this.transform.position.x, myCam.transform.position.y, myCam.transform.position.z);
     }
 
     //Update, or "main", method to be used by server
@@ -44,6 +47,8 @@ public class PlayerController : MonoBehaviour
         //Vector3 bulletVelocity = GetVelocity(mousePos);
         Vector3 targetPos = mousePos - this.transform.position;
         GameObject bullet = GameObject.Instantiate(bulletPrefab, this.transform.position + Vector3.up, Quaternion.LookRotation(targetPos, Vector3.up)).gameObject;
+        bullet.GetComponent<Bullet>().curColor = curColor;
+        bullet.GetComponent<Bullet>().ReColor();
         Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
         bulletRb.velocity = bullet.transform.forward * bulletSpeed;
     }

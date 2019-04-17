@@ -210,6 +210,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4000770276209832497, guid: d6c15473bd883ff46a4ca8cf7c6977e5,
+        type: 3}
+      propertyPath: myCam
+      value: 
+      objectReference: {fileID: 534669904}
+    - target: {fileID: 4000770276209832497, guid: d6c15473bd883ff46a4ca8cf7c6977e5,
+        type: 3}
+      propertyPath: curColor
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6c15473bd883ff46a4ca8cf7c6977e5, type: 3}
 --- !u!1 &170076733
@@ -447,7 +457,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 4.65, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -698,6 +708,11 @@ PrefabInstance:
       propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1387155395286720232, guid: 1b295081cd562c54e86380c0e70e27ec,
+        type: 3}
+      propertyPath: curColor
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b295081cd562c54e86380c0e70e27ec, type: 3}
 --- !u!1001 &3765460204865782477
@@ -766,6 +781,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3765460204542212227, guid: 203e66ed68a8d1d4781f5d741e8dec98,
+        type: 3}
+      propertyPath: curColor
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 203e66ed68a8d1d4781f5d741e8dec98, type: 3}

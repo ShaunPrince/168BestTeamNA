@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : ColoredEntity
 {
     public int damage;
     //public float yVelocity;
-    public DamagableEntity.EColor curColor;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +23,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<DamagableEntity>() != null)
         {
+
             collision.gameObject.GetComponent<DamagableEntity>().TakeDamage(damage, curColor);
             Destroy(this.gameObject);
         }
