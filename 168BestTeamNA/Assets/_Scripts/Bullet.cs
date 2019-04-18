@@ -33,5 +33,14 @@ public class Bullet : ColoredEntity
             Destroy(collision.gameObject);
             Destroy(this.gameObject);
         }
+
+        if (collision.collider.tag.Equals("Projectile"))
+        {
+
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
