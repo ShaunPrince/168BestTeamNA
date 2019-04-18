@@ -322,7 +322,7 @@ Transform:
   m_GameObject: {fileID: 1423505476}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.6541562, y: 0.45925286, z: -4.255046}
-  m_LocalScale: {x: 27.01, y: 1, z: 2}
+  m_LocalScale: {x: 50, y: 1, z: 2}
   m_Children: []
   m_Father: {fileID: 24765973}
   m_RootOrder: 0
@@ -452,5 +452,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4000770276209832497, guid: d6c15473bd883ff46a4ca8cf7c6977e5,
+        type: 3}
+      propertyPath: myCam
+      value: 
+      objectReference: {fileID: 534669904}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6c15473bd883ff46a4ca8cf7c6977e5, type: 3}
