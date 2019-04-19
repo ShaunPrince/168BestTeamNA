@@ -12,13 +12,24 @@ public class ColoredEntity : MonoBehaviour
     private void Awake()
     {
         materialList = new Material[5];
-        materialList[0] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Art/Materials/Red.mat");
-        materialList[1] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Art/Materials/Blue.mat");
-        materialList[2] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Art/Materials/Green.mat");
-        materialList[3] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Art/Materials/Yellow.mat");
-        materialList[4] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Art/Materials/Gray.mat");
-    
-        if(this.gameObject.GetComponentInChildren<Renderer>() != null)
+        //materialList[0] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Art/Materials/Red.mat");
+        //materialList[1] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Art/Materials/Blue.mat");
+        //materialList[2] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Art/Materials/Green.mat");
+        //materialList[3] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Art/Materials/Yellow.mat");
+        //materialList[4] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Art/Materials/Gray.mat");
+
+        materialList[0] = Resources.Load<Material>("Red");
+        materialList[1] = Resources.Load<Material>("Blue");
+        materialList[2] = Resources.Load<Material>("Green");
+        materialList[3] = Resources.Load<Material>("Yellow");
+        materialList[4] = Resources.Load<Material>("Gray");
+        //materialList[1] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Art/Materials/Blue.mat");
+        //materialList[2] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Art/Materials/Green.mat");
+        //materialList[3] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Art/Materials/Yellow.mat");
+        //materialList[4] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Art/Materials/Gray.mat");
+
+
+        if (this.gameObject.GetComponentInChildren<Renderer>() != null)
         {
             this.gameObject.GetComponentInChildren<Renderer>().material = materialList[(int)curColor];
         }
