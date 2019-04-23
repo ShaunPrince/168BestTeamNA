@@ -23,6 +23,7 @@ public class PlayerManager : NetworkBehaviour
     void Start()
     {
         m_Rigidbody = this.GetComponent<Rigidbody>();
+        myCam = Camera.main;
 
     }
 
