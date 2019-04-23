@@ -17,6 +17,8 @@ public class EnemyController : MonoBehaviour
     private float timeSinceLastSpawn;
     private float currentTimeBetweenSpawns;
 
+    public int numPlayers;
+
     private Vector3 lastRedSpawnCoord;
     private Vector3 lastBlueSpawnCoord;
     private Vector3 lastGreenSpawnCoord;
@@ -24,6 +26,7 @@ public class EnemyController : MonoBehaviour
 
     private Vector3 sumSpawn;
     private int numberOfSpawns;
+    public int dificultySpikeThresh;
 
     // Start is called before the first frame update
     void Start()
@@ -66,13 +69,13 @@ public class EnemyController : MonoBehaviour
         Vector3 dest = this.transform.TransformPoint(new Vector3((Random.Range(-1f, 1f) * widthOfPlaySpace / 2), 0, 0));
         //Debug.Log(dest);
         //Debug.Log(dest - curPosition);
-        Debug.DrawRay(curPosition, (dest - curPosition) * 100, Color.blue, 10);
+        //Debug.DrawRay(curPosition, (dest - curPosition) * 100, Color.blue, 10);
         return (dest - curPosition); 
     }
 
     public void spawnRandomAstroid()
     {
-        ColoredEntity.EColor newColor = (ColoredEntity.EColor)Random.Range(0, 4);
+        ColoredEntity.EColor newColor = (ColoredEntity.EColor)Random.Range(0, numPlayers + 1);
         Vector3 lastSpawn = Vector3.zero;
 
 
@@ -109,6 +112,13 @@ public class EnemyController : MonoBehaviour
 
         sumSpawn += lastSpawn;
         ++numberOfSpawns;
+        if(numberOfSpawns > dificultySpikeThresh)
+        {
+            minTImeBetweenSpawns *= .9f;
+            maxTimeBetweenSpawns *= .9f;
+            dificultySpikeThresh += 2;
+            numberOfSpawns = 0;
+        }
         //Debug.Log("Avg: " + sumSpawn / numberOfSpawns);
 
         switch (newColor)
