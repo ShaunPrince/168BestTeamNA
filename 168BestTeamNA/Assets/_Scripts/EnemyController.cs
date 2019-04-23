@@ -28,6 +28,9 @@ public class EnemyController : MonoBehaviour
     private int numberOfSpawns;
     public int dificultySpikeThresh;
 
+    public float graySpawnThresh;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,7 +78,13 @@ public class EnemyController : MonoBehaviour
 
     public void spawnRandomAstroid()
     {
-        ColoredEntity.EColor newColor = (ColoredEntity.EColor)Random.Range(0, numPlayers + 1);
+        ColoredEntity.EColor newColor = (ColoredEntity.EColor)Random.Range(1, numPlayers + 1);
+        
+        if(Random.Range(0f,1f) <= graySpawnThresh)
+        {
+            newColor = ColoredEntity.EColor.Gray;
+        }
+        
         Vector3 lastSpawn = Vector3.zero;
 
 
@@ -136,6 +145,9 @@ public class EnemyController : MonoBehaviour
                 lastYellowSpawnCoord = lastSpawn;
                 break;
             case ColoredEntity.EColor.Gray:
+                newAstroid.transform.localScale = new Vector3(3, 3, 3);
+                newAstroid.GetComponent<DamagableEntity>().health = 3;
+                newAstroid.GetComponent<Astroid>().damage = 15;
                 lastSpawn = new Vector3(0, heightOfPlaySpace, 0);
                 break;
         }
