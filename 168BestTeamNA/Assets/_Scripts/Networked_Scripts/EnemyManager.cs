@@ -1,9 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections.Generic;
 
-public class EnemyController : MonoBehaviour
+public class EnemyManager : NetworkBehaviour
 {
+    /*
+     *  Sync when an asteroid is spawned
+     *      sync location, angle, speed, color
+     *  Sync when an asteroid is hit (to get rid of it for all players)
+     *  
+     *  The rest should technically be deterministic, but shoot me in the foot when that proves wrong 
+     */
     public float maxTimeBetweenSpawns;
     public float minTImeBetweenSpawns;
 
@@ -13,6 +22,9 @@ public class EnemyController : MonoBehaviour
     public float astroidTravelSPeed;
 
     public GameObject astroidPrefab;
+
+    // game manager
+    public gameManager gameManager;
 
     private float timeSinceLastSpawn;
     private float currentTimeBetweenSpawns;
@@ -43,21 +55,27 @@ public class EnemyController : MonoBehaviour
 
         sumSpawn = new Vector3(0, heightOfPlaySpace, 0);
         numberOfSpawns = 1;
+
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<gameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        CheckForAndSpawn();
-        
+        // if the game has started, start spawning enemies
+        if (gameManager.gameStarted())
+        {
+            CheckForAndSpawn();
+        }
+
     }
 
     public void CheckForAndSpawn()
     {
         timeSinceLastSpawn += Time.deltaTime;
-        if(timeSinceLastSpawn >= currentTimeBetweenSpawns)
+        if (timeSinceLastSpawn >= currentTimeBetweenSpawns)
         {
+            Debug.Log("why are things not printing???");
             spawnRandomAstroid();
         }
         else
@@ -75,25 +93,27 @@ public class EnemyController : MonoBehaviour
         //Debug.Log(dest);
         //Debug.Log(dest - curPosition);
         //Debug.DrawRay(curPosition, (dest - curPosition) * 100, Color.blue, 10);
-        return (dest - curPosition); 
+        return (dest - curPosition);
     }
 
+    //[ServerCallback]
     public void spawnRandomAstroid()
     {
         ColoredEntity.EColor newColor = (ColoredEntity.EColor)Random.Range(1, numPlayers + 1);
-        
-        if(Random.Range(0f,1f) <= graySpawnThresh)
+
+        if (Random.Range(0f, 1f) <= graySpawnThresh)
         {
             newColor = ColoredEntity.EColor.Gray;
         }
-        
+
         Vector3 lastSpawn = Vector3.zero;
 
 
         //debug for testing
         //newColor = ColoredEntity.EColor.Red;
+        Debug.Log("Starting new spawn");
 
-        switch(newColor)
+        switch (newColor)
         {
             case ColoredEntity.EColor.Red:
                 lastSpawn = lastRedSpawnCoord;
@@ -115,7 +135,7 @@ public class EnemyController : MonoBehaviour
         //Spawn an astroid at the top of the playspace and somewhere between the horizontal boundries
         float leftSpawnLine = Mathf.Max(-widthOfPlaySpace / 2, lastSpawn.x - widthOfPlaySpace / 2);
         float rightSpawnLine = Mathf.Min(widthOfPlaySpace / 2, lastSpawn.x + widthOfPlaySpace / 2);
-        GameObject newAstroid = Instantiate(astroidPrefab, new Vector3(Random.Range(leftSpawnLine,rightSpawnLine), heightOfPlaySpace, 0), Quaternion.identity);
+        GameObject newAstroid = Instantiate(astroidPrefab, new Vector3(Random.Range(leftSpawnLine, rightSpawnLine), heightOfPlaySpace, 0), Quaternion.identity);
         newAstroid.GetComponent<Astroid>().ReColor(newColor);
         newAstroid.GetComponent<Rigidbody>().velocity = GenerateRandomDirectionToGround(newAstroid.transform.position) * astroidTravelSPeed;
 
@@ -123,7 +143,7 @@ public class EnemyController : MonoBehaviour
 
         sumSpawn += lastSpawn;
         ++numberOfSpawns;
-        if(numberOfSpawns > dificultySpikeThresh)
+        if (numberOfSpawns > dificultySpikeThresh)
         {
             minTImeBetweenSpawns *= .9f;
             maxTimeBetweenSpawns *= .9f;
@@ -131,6 +151,7 @@ public class EnemyController : MonoBehaviour
             numberOfSpawns = 0;
         }
         //Debug.Log("Avg: " + sumSpawn / numberOfSpawns);
+        Debug.Log("Spawned");
 
         switch (newColor)
         {
@@ -153,7 +174,6 @@ public class EnemyController : MonoBehaviour
                 lastSpawn = new Vector3(0, heightOfPlaySpace, 0);
                 break;
         }
-
 
         currentTimeBetweenSpawns = Random.Range(minTImeBetweenSpawns, maxTimeBetweenSpawns);
         timeSinceLastSpawn = 0;
