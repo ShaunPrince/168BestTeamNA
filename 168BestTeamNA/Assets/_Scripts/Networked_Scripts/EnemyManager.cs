@@ -66,6 +66,13 @@ public class EnemyManager : NetworkBehaviour
         if (gameManager.gameStarted())
         {
             CheckForAndSpawn();
+
+        }
+
+        // until the game has started, check for number of players
+        else
+        {
+            numPlayers = GameObject.FindWithTag("GameManager").GetComponent<gameManager>().getNumberPlayers();
         }
 
     }

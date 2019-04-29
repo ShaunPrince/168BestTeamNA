@@ -22,14 +22,14 @@ public class PlayerManager : NetworkBehaviour
     private bool setColor = false;
 
     private Rigidbody m_Rigidbody;
-    private PlayerShooter ShootScript;
+    //private PlayerShooter ShootScript;
 
     public override void OnStartLocalPlayer()
     {
         m_Rigidbody = this.GetComponent<Rigidbody>();
         myCam = Camera.main;
     
-        ShootScript = this.GetComponent<PlayerShooter>();
+        //ShootScript = this.GetComponent<PlayerShooter>();
 
         //PlayerCountMsg = new NumberOfPlayers();
         //PlayerCountMsg.SetupClient("127.0.0.1", 7777);
@@ -77,8 +77,8 @@ public class PlayerManager : NetworkBehaviour
     public void UpdatePlayerState()
     {
         UpdateMovement();
-        if (Input.GetMouseButtonDown(0))
-            ShootScript.Shoot();
+        //if (Input.GetMouseButtonDown(0))
+            //ShootScript.Shoot();
     }
 
     [Client]
@@ -117,6 +117,11 @@ public class PlayerManager : NetworkBehaviour
     void CmdTellServerMyColor(int numColor)
     {
         myUniqueColor = numColor;
+    }
+
+    public Material GetPlayerColor()
+    {
+        return myRenderer.material;
     }
 
 
