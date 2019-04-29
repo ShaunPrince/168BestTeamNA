@@ -28,7 +28,7 @@ public class Bullet : ColoredEntity
         if (collision.gameObject.GetComponent<DamagableEntity>() != null)
         {
             
-            collision.gameObject.GetComponent<DamagableEntity>().TakeDamage(damage, playerColor);
+            collision.gameObject.GetComponent<DamagableEntity>().TakeDamage(damage, this.curColor);
             Destroy(this.gameObject);
         }
 
