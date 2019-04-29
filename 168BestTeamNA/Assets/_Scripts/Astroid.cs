@@ -16,7 +16,7 @@ public class Astroid : DamagableEntity
     // Update is called once per frame
     void Update()
     {
-        
+        ReColor(curColor);
     }
 
     private void OnCollisionEnter(Collision collision)

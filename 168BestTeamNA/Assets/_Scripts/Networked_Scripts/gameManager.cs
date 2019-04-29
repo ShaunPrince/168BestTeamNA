@@ -45,6 +45,9 @@ public class gameManager : NetworkBehaviour
         for (int i = 0; i < maxNumPlayers; ++i)
         {
             recievedPlayerCount[i] = true;
+            GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyManager>()
+                .setNumPlayers(GameObject.FindGameObjectWithTag("EnemyManager").GetComponent<EnemyManager>()
+                .numPlayers + 1);
         }
     }
 

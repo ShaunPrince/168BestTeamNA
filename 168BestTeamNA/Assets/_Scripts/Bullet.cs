@@ -18,15 +18,9 @@ public class Bullet : ColoredEntity
     // Update is called once per frame
     void Update()
     {
-        if (!gotColor)
-        {
-            int colorInt = GameObject.FindWithTag("Player").GetComponent<PlayerManager>().GetPlayerColorInt();
-            playerColor = (ColoredEntity.EColor)colorInt;
-            Debug.Log("Set bullet color to: " + playerColor);
-            //ReColor(playerColor);
-            gotColor = true;
-        }
-        
+        ReColor(curColor);
+
+
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.Networking;
 
-public class ColoredEntity : MonoBehaviour
+
+
+public class ColoredEntity : NetworkBehaviour
 {
     public enum EColor { Gray = 0, Red, Blue, Green, Yellow  };
     public static Material[] materialList;
-    public EColor curColor;
+
+    [SyncVar] public EColor curColor;
 
     private void Awake()
     {
@@ -45,7 +49,7 @@ public class ColoredEntity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void ReColor(EColor newColor)
