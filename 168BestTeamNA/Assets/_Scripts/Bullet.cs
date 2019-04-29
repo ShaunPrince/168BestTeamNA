@@ -23,7 +23,7 @@ public class Bullet : ColoredEntity
             int colorInt = GameObject.FindWithTag("Player").GetComponent<PlayerManager>().GetPlayerColorInt();
             playerColor = (ColoredEntity.EColor)colorInt;
             Debug.Log("Set bullet color to: " + playerColor);
-            ReColor(playerColor);
+            //ReColor(playerColor);
             gotColor = true;
         }
         

@@ -11,7 +11,8 @@ public class PlayerShooter : NetworkBehaviour
     private Vector3 leftVectorLimit;
 
     private bool gotColor = false;
-    private Material playerColor;
+    //private Material playerColor;
+    private ColoredEntity.EColor playerColor;
 
     void Start()
     {
@@ -23,7 +24,9 @@ public class PlayerShooter : NetworkBehaviour
     {
         if (!gotColor)
         {
-            playerColor = this.gameObject.GetComponent<PlayerManager>().GetPlayerColor();
+            //playerColor = this.gameObject.GetComponent<PlayerManager>().GetPlayerColor();
+            int colorInt = GameObject.FindWithTag("Player").GetComponent<PlayerManager>().GetPlayerColorInt();
+            playerColor = (ColoredEntity.EColor)colorInt;
             gotColor = true;
         }
 
@@ -72,6 +75,7 @@ public class PlayerShooter : NetworkBehaviour
     {
         GameObject bullet = GameObject.Instantiate(bulletPrefab, this.transform.position + Vector3.up, Quaternion.LookRotation(targetPos, Vector3.up)).gameObject;
         //bullet.GetComponent<Bullet>().GetComponentInChildren<Renderer>().material = playerColor;
+        bullet.GetComponent<Bullet>().ReColor(playerColor);
         Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
         bulletRb.velocity = bullet.transform.forward * bulletSpeed;
 
