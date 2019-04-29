@@ -25,7 +25,7 @@ public class PlayerShooter : NetworkBehaviour
         if (!gotColor)
         {
             //playerColor = this.gameObject.GetComponent<PlayerManager>().GetPlayerColor();
-            int colorInt = GameObject.FindWithTag("Player").GetComponent<PlayerManager>().GetPlayerColorInt();
+            int colorInt = this.GetComponent<PlayerManager>().GetPlayerColorInt();
             playerColor = (ColoredEntity.EColor)colorInt;
             gotColor = true;
         }
