@@ -66,6 +66,7 @@ MonoBehaviour:
   curColor: 4
   health: 1
   damage: 5
+  scaleFactor: 1
 --- !u!114 &3404874432865740104
 MonoBehaviour:
   m_ObjectHideFlags: 0

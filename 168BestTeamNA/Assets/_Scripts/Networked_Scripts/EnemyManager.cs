@@ -155,7 +155,7 @@ public class EnemyManager : NetworkBehaviour
 
         lastSpawn = newAstroid.transform.position;
 
-        NetworkServer.Spawn(newAstroid);
+
 
         sumSpawn += lastSpawn;
 
@@ -185,12 +185,14 @@ public class EnemyManager : NetworkBehaviour
                 lastYellowSpawnCoord = lastSpawn;
                 break;
             case ColoredEntity.EColor.Gray:
-                newAstroid.transform.localScale = new Vector3(3, 3, 3);
+                newAstroid.GetComponent<Astroid>().scaleFactor = 3;
                 newAstroid.GetComponent<DamagableEntity>().health = 3;
                 newAstroid.GetComponent<Astroid>().damage = 15;
                 lastSpawn = new Vector3(0, heightOfPlaySpace, 0);
                 break;
         }
+
+        NetworkServer.Spawn(newAstroid);
 
 
         Debug.Log("newAstroid color: " + newAstroid.GetComponent<Astroid>().curColor);

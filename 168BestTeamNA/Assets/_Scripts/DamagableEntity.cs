@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class DamagableEntity : ColoredEntity
 {
     //EColor will be used for identification and damage
 
 
-    public float health;
+    [SyncVar] public float health;
 
     // Start is called before the first frame update
     void Start()
