@@ -103,8 +103,9 @@ GameObject:
   - component: {fileID: 4024650887761722202}
   - component: {fileID: 7834518533185009721}
   - component: {fileID: 2297432307949680633}
-  - component: {fileID: 2540065444019641597}
   - component: {fileID: 8508494686704491912}
+  - component: {fileID: 1353860107353633578}
+  - component: {fileID: 5978815126934733205}
   m_Layer: 10
   m_Name: Networked_Player
   m_TagString: Player
@@ -198,22 +199,6 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
---- !u!114 &2540065444019641597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4024650887761722204}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fc6362b7dc504b45a603754a8703885, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 20
-  bulletPrefab: {fileID: 2682153458536269626, guid: 69e1ffc2c51267540988b0d4406726c3,
-    type: 3}
-  myCam: {fileID: 0}
 --- !u!114 &8508494686704491912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,3 +213,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 20
   myCam: {fileID: 0}
+  materialList:
+  - {fileID: 2100000, guid: 2ba73ba32ac87074ebe38bc03e4834be, type: 2}
+  - {fileID: 2100000, guid: a92f816d19a6acb4b837dbab13d0a256, type: 2}
+  - {fileID: 2100000, guid: 46e97d694ae4c474d8b1aa04a63ccd13, type: 2}
+  - {fileID: 2100000, guid: 70421e248051c2f4fbf3105cee16b32a, type: 2}
+  - {fileID: 2100000, guid: 2ce2a3c48d9643b41a085c00aac4f4c3, type: 2}
+  myUniqueColor: 0
+  numPlayers: 0
+--- !u!114 &1353860107353633578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4024650887761722204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df337df19d9a8de438976ad4fdcd76ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 2682153458536269626, guid: 69e1ffc2c51267540988b0d4406726c3,
+    type: 3}
+--- !u!114 &5978815126934733205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4024650887761722204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ac1d9f59bd2863459a8a0f703c7e860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

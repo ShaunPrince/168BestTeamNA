@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 855633637936894349}
   - component: {fileID: 3404874432865740104}
   - component: {fileID: 3380810481623108197}
+  - component: {fileID: 7360612449198048777}
   m_Layer: 11
   m_Name: Networked_Astroid
   m_TagString: Untagged
@@ -97,8 +98,8 @@ MonoBehaviour:
     i13: 0
     i14: 0
     i15: 0
-  m_ServerOnly: 1
-  m_LocalPlayerAuthority: 0
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &3380810481623108197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,6 +122,18 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &7360612449198048777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855633637936894336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9161c2b35d4f4114cb421ace162f1414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &855633639244454983
 GameObject:
   m_ObjectHideFlags: 0

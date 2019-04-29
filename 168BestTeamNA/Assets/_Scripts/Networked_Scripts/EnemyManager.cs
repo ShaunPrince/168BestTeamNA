@@ -70,12 +70,16 @@ public class EnemyManager : NetworkBehaviour
 
     }
 
+    public void setNumPlayers(int num)
+    {
+        numPlayers = num;
+    }
+
     public void CheckForAndSpawn()
     {
         timeSinceLastSpawn += Time.deltaTime;
         if (timeSinceLastSpawn >= currentTimeBetweenSpawns)
         {
-            Debug.Log("why are things not printing???");
             spawnRandomAstroid();
         }
         else
@@ -96,7 +100,7 @@ public class EnemyManager : NetworkBehaviour
         return (dest - curPosition);
     }
 
-    //[ServerCallback]
+    [Server]
     public void spawnRandomAstroid()
     {
         ColoredEntity.EColor newColor = (ColoredEntity.EColor)Random.Range(1, numPlayers + 1);
@@ -111,7 +115,6 @@ public class EnemyManager : NetworkBehaviour
 
         //debug for testing
         //newColor = ColoredEntity.EColor.Red;
-        Debug.Log("Starting new spawn");
 
         switch (newColor)
         {
@@ -174,6 +177,8 @@ public class EnemyManager : NetworkBehaviour
                 lastSpawn = new Vector3(0, heightOfPlaySpace, 0);
                 break;
         }
+
+        NetworkServer.Spawn(newAstroid);
 
         currentTimeBetweenSpawns = Random.Range(minTImeBetweenSpawns, maxTimeBetweenSpawns);
         timeSinceLastSpawn = 0;
