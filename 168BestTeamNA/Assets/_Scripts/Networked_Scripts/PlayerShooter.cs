@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 public class PlayerShooter : NetworkBehaviour
 {
-    public Transform bulletPrefab;
+    public GameObject bulletPrefab;
     public int bulletSpeed;
     private Vector3 rightVectorLimit;
     private Vector3 leftVectorLimit;
@@ -38,13 +38,13 @@ public class PlayerShooter : NetworkBehaviour
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
         Vector3 targetPos = mousePos - this.transform.position;
         targetPos = CheckTargetPos(targetPos);
-        GameObject bullet = GameObject.Instantiate(bulletPrefab, this.transform.position + Vector3.up, Quaternion.LookRotation(targetPos, Vector3.up)).gameObject;
-        bullet.GetComponent<Bullet>().GetComponentInChildren<Renderer>().material = playerColor;
-        Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
-        bulletRb.velocity = bullet.transform.forward * bulletSpeed;
+        //GameObject bullet = GameObject.Instantiate(bulletPrefab, this.transform.position + Vector3.up, Quaternion.LookRotation(targetPos, Vector3.up)).gameObject;
+        //bullet.GetComponent<Bullet>().GetComponentInChildren<Renderer>().material = playerColor;
+        //Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
+        //bulletRb.velocity = bullet.transform.forward * bulletSpeed;
 
         // spawn the bullet on the server
-        CmdSpawnBullet(bullet);
+        CmdSpawnBullet(targetPos);
 
     }
 
@@ -67,8 +67,16 @@ public class PlayerShooter : NetworkBehaviour
     }
 
     [Command]
-    void CmdSpawnBullet(GameObject bullet)
+    void CmdSpawnBullet(Vector3 targetPos)
     {
+        GameObject bullet = GameObject.Instantiate(bulletPrefab, this.transform.position + Vector3.up, Quaternion.LookRotation(targetPos, Vector3.up)).gameObject;
+        bullet.GetComponent<Bullet>().GetComponentInChildren<Renderer>().material = playerColor;
+        Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
+        bulletRb.velocity = bullet.transform.forward * bulletSpeed;
+
+        Debug.Log(this.gameObject);
         NetworkServer.Spawn(bullet);
+        Debug.Log("Spawning bullet on server");
     }
+
 }

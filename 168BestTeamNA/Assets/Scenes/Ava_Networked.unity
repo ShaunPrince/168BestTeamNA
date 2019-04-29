@@ -1014,7 +1014,7 @@ MonoBehaviour:
   m_AllowFragmentation: 1
   m_MatchHost: mm.unet.unity3d.com
   m_MatchPort: 443
-  matchName: default
+  matchName: Hella Best Game
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
