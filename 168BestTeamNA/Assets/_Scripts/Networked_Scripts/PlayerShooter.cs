@@ -24,6 +24,7 @@ public class PlayerShooter : NetworkBehaviour
         if (!gotColor)
         {
             playerColor = this.gameObject.GetComponent<PlayerManager>().GetPlayerColor();
+            gotColor = true;
         }
 
         if (isLocalPlayer)
@@ -70,7 +71,7 @@ public class PlayerShooter : NetworkBehaviour
     void CmdSpawnBullet(Vector3 targetPos)
     {
         GameObject bullet = GameObject.Instantiate(bulletPrefab, this.transform.position + Vector3.up, Quaternion.LookRotation(targetPos, Vector3.up)).gameObject;
-        bullet.GetComponent<Bullet>().GetComponentInChildren<Renderer>().material = playerColor;
+        //bullet.GetComponent<Bullet>().GetComponentInChildren<Renderer>().material = playerColor;
         Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
         bulletRb.velocity = bullet.transform.forward * bulletSpeed;
 

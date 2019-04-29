@@ -124,6 +124,11 @@ public class PlayerManager : NetworkBehaviour
         return myRenderer.material;
     }
 
+    public int GetPlayerColorInt()
+    {
+        return myUniqueColor;
+    }
+
 
     /////////////////////////////////////////////
 
