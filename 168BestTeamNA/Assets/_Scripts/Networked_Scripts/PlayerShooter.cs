@@ -10,6 +10,10 @@ public class PlayerShooter : NetworkBehaviour
     private Vector3 rightVectorLimit;
     private Vector3 leftVectorLimit;
 
+    //private bool canShoot = true;
+    //private int shootCounter = 0;
+    //private int shootCounterMax = 8;
+
     private bool gotColor = false;
     //private Material playerColor;
     private ColoredEntity.EColor playerColor;
@@ -32,9 +36,26 @@ public class PlayerShooter : NetworkBehaviour
 
         if (isLocalPlayer)
         {
-            if (Input.GetMouseButtonDown(0)) Shoot();
+            if (Input.GetMouseButtonDown(0))
+            {
+                Shoot();
+                //canShoot = false;
+            }
+            //// if cannot shoot, increment counter
+            //if (!canShoot)
+            //{
+            //    ++shootCounter;
+            //}
+            //if (shootCounter >= shootCounterMax)
+            //{
+            //    canShoot = true;
+            //    shootCounter = 0;
+            //}
         }
+
     }
+
+
 
     public void Shoot()
     {

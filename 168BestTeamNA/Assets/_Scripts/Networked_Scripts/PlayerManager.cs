@@ -20,6 +20,8 @@ public class PlayerManager : NetworkBehaviour
     private int myColor;
     private Renderer myRenderer;
     private bool setColor = false;
+    private int setColorCounter = 0;
+    private int setColorCounterMax = 10;
 
     private Rigidbody m_Rigidbody;
     //private PlayerShooter ShootScript;
@@ -67,7 +69,9 @@ public class PlayerManager : NetworkBehaviour
             numPlayers = GameObject.FindWithTag("GameManager").GetComponent<gameManager>().getNumberPlayers();
             GetNetworkColor();
             SetNetworkedColor();
-            setColor = true;
+            if (setColorCounter >= setColorCounterMax) setColor = true;
+            else ++setColorCounter;
+            
         }
 
         //numPlayers = GameObject.FindWithTag("GameManager").GetComponent<gameManager>().getNumberPlayers();
