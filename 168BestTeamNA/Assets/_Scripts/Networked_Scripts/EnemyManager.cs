@@ -66,8 +66,21 @@ public class EnemyManager : NetworkBehaviour
         if (gameManager.gameStarted())
         {
             CheckForAndSpawn();
+
         }
 
+        // until the game has started, check for number of players
+        else
+        {
+            numPlayers = GameObject.FindWithTag("GameManager").GetComponent<gameManager>().getNumberPlayers();
+        }
+
+    }
+
+    
+    public void setNumPlayers(int num)
+    {
+        numPlayers = num;
     }
 
     public void CheckForAndSpawn()
@@ -75,7 +88,6 @@ public class EnemyManager : NetworkBehaviour
         timeSinceLastSpawn += Time.deltaTime;
         if (timeSinceLastSpawn >= currentTimeBetweenSpawns)
         {
-            Debug.Log("why are things not printing???");
             spawnRandomAstroid();
         }
         else
@@ -96,7 +108,7 @@ public class EnemyManager : NetworkBehaviour
         return (dest - curPosition);
     }
 
-    //[ServerCallback]
+    [Server]
     public void spawnRandomAstroid()
     {
         ColoredEntity.EColor newColor = (ColoredEntity.EColor)Random.Range(1, numPlayers + 1);
@@ -111,7 +123,6 @@ public class EnemyManager : NetworkBehaviour
 
         //debug for testing
         //newColor = ColoredEntity.EColor.Red;
-        Debug.Log("Starting new spawn");
 
         switch (newColor)
         {
@@ -136,12 +147,18 @@ public class EnemyManager : NetworkBehaviour
         float leftSpawnLine = Mathf.Max(-widthOfPlaySpace / 2, lastSpawn.x - widthOfPlaySpace / 2);
         float rightSpawnLine = Mathf.Min(widthOfPlaySpace / 2, lastSpawn.x + widthOfPlaySpace / 2);
         GameObject newAstroid = Instantiate(astroidPrefab, new Vector3(Random.Range(leftSpawnLine, rightSpawnLine), heightOfPlaySpace, 0), Quaternion.identity);
-        newAstroid.GetComponent<Astroid>().ReColor(newColor);
         newAstroid.GetComponent<Rigidbody>().velocity = GenerateRandomDirectionToGround(newAstroid.transform.position) * astroidTravelSPeed;
+
+
+
+        newAstroid.GetComponent<Astroid>().ReColor(newColor);
 
         lastSpawn = newAstroid.transform.position;
 
+
+
         sumSpawn += lastSpawn;
+
         ++numberOfSpawns;
         if (numberOfSpawns > dificultySpikeThresh)
         {
@@ -168,12 +185,17 @@ public class EnemyManager : NetworkBehaviour
                 lastYellowSpawnCoord = lastSpawn;
                 break;
             case ColoredEntity.EColor.Gray:
-                newAstroid.transform.localScale = new Vector3(3, 3, 3);
+                newAstroid.GetComponent<Astroid>().scaleFactor = 3;
                 newAstroid.GetComponent<DamagableEntity>().health = 3;
                 newAstroid.GetComponent<Astroid>().damage = 15;
                 lastSpawn = new Vector3(0, heightOfPlaySpace, 0);
                 break;
         }
+
+        NetworkServer.Spawn(newAstroid);
+
+
+        Debug.Log("newAstroid color: " + newAstroid.GetComponent<Astroid>().curColor);
 
         currentTimeBetweenSpawns = Random.Range(minTImeBetweenSpawns, maxTimeBetweenSpawns);
         timeSinceLastSpawn = 0;

@@ -946,7 +946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NetworkPort: 7777
-  m_ServerBindToIP: 0
+  m_ServerBindToIP: 1
   m_ServerBindAddress: 
   m_NetworkAddress: localhost
   m_DontDestroyOnLoad: 1
@@ -960,7 +960,9 @@ MonoBehaviour:
   m_PlayerSpawnMethod: 0
   m_OfflineScene: 
   m_OnlineScene: 
-  m_SpawnPrefabs: []
+  m_SpawnPrefabs:
+  - {fileID: 855633637936894336, guid: b4ae3056628fd89429df6f5ab4da3053, type: 3}
+  - {fileID: 2682153458536269607, guid: 69e1ffc2c51267540988b0d4406726c3, type: 3}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -1012,7 +1014,7 @@ MonoBehaviour:
   m_AllowFragmentation: 1
   m_MatchHost: mm.unet.unity3d.com
   m_MatchPort: 443
-  matchName: default
+  matchName: Hella Best Game
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
@@ -1028,7 +1030,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &956193930
 GameObject:
@@ -1488,7 +1490,7 @@ GameObject:
   - component: {fileID: 1544603809}
   m_Layer: 0
   m_Name: EnemyManager
-  m_TagString: Untagged
+  m_TagString: EnemyManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1526,7 +1528,7 @@ MonoBehaviour:
   astroidTravelSPeed: 0.05
   astroidPrefab: {fileID: 855633637936894336, guid: b4ae3056628fd89429df6f5ab4da3053,
     type: 3}
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 2127954152}
   numPlayers: 1
   dificultySpikeThresh: 5
   graySpawnThresh: 0.1
@@ -1938,7 +1940,7 @@ MonoBehaviour:
     i13: 0
     i14: 0
     i15: 0
-  m_ServerOnly: 1
+  m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
 --- !u!114 &2127954152
 MonoBehaviour:
@@ -1953,6 +1955,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameStatus: 0
+  numPlayers: 0
+  listPlayers: []
 --- !u!4 &2127954153
 Transform:
   m_ObjectHideFlags: 0
@@ -1965,7 +1969,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2141139479
 GameObject:
