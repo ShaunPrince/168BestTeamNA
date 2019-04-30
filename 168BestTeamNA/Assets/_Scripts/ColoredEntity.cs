@@ -60,4 +60,9 @@ public class ColoredEntity : NetworkBehaviour
             this.gameObject.GetComponentInChildren<Renderer>().material = materialList[(int)curColor];
         }
     }
+
+    public void ReColorAsteroid(EColor newColor, Renderer glowRock)
+    {
+        glowRock.GetComponent<Renderer>().material = materialList[(int)curColor];
+    }
 }
