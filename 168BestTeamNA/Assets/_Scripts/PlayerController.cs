@@ -6,20 +6,16 @@ public class PlayerController : ColoredEntity
 {
     public int moveSpeed;
     public Transform bulletPrefab;
+    public int bulletSpeed;
+    public Vector3 vectorLimit;
 
     public Camera myCam;
 
     private Rigidbody rb;
-    private int bulletSpeed;
-    private Vector3 rightVectorLimit;
-    private Vector3 leftVectorLimit;
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
-        bulletSpeed = 20;
-        rightVectorLimit = new Vector3(1.0f, 2.0f, 0.0f);
-        leftVectorLimit = new Vector3(-1.0f, 2.0f, 0.0f);
     }
 
     // Update is called once per frame
@@ -53,7 +49,6 @@ public class PlayerController : ColoredEntity
         bullet.GetComponent<Bullet>().ReColor(curColor);
         Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
         bulletRb.velocity = bullet.transform.forward * bulletSpeed;
-        
     }
 
     private Vector3 CheckTargetPos(Vector3 targetPos)
@@ -63,9 +58,12 @@ public class PlayerController : ColoredEntity
         if (angle > 45.0f)
         {
             if (targetPos.x > 0.0f)
-                newTargetPos = rightVectorLimit;
+                newTargetPos = vectorLimit;
             else
-                newTargetPos = leftVectorLimit;
+            {
+                newTargetPos = vectorLimit;
+                newTargetPos.x = newTargetPos.x * -1.0f;
+            }
         }
         else
         {

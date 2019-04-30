@@ -457,5 +457,26 @@ PrefabInstance:
       propertyPath: myCam
       value: 
       objectReference: {fileID: 534669904}
+    - target: {fileID: 4000770276209832497, guid: d6c15473bd883ff46a4ca8cf7c6977e5,
+        type: 3}
+      propertyPath: vectorLimit.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000770276209832497, guid: d6c15473bd883ff46a4ca8cf7c6977e5,
+        type: 3}
+      propertyPath: vectorLimit.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000770276209832497, guid: d6c15473bd883ff46a4ca8cf7c6977e5,
+        type: 3}
+      propertyPath: bulletSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000770276209832497, guid: d6c15473bd883ff46a4ca8cf7c6977e5,
+        type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 3765460204542212253, guid: 203e66ed68a8d1d4781f5d741e8dec98,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6c15473bd883ff46a4ca8cf7c6977e5, type: 3}
