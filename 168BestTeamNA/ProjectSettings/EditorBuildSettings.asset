@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Ava.unity
     guid: f64c5799182b1a1408356e03e5d31c35
+  - enabled: 1
+    path: Assets/Scenes/Ava_Networked.unity
+    guid: 28abe44e448266c44b9ecfc40d07c035
   m_configObjects: {}

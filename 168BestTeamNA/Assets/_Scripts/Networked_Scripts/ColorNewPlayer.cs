@@ -1,17 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
-using UnityEngine.Networking;
 
-
-
-public class ColoredEntity : NetworkBehaviour
+public class ColorNewPlayer : MonoBehaviour
 {
-    public enum EColor { Gray = 0, Red, Blue, Green, Yellow  };
+    public enum EColor { Gray = 0, Red, Blue, Green, Yellow };
     public static Material[] materialList;
-
-    [SyncVar] public EColor curColor;
+    //public EColor curColor;
+    public int playerNum;
 
     private void Awake()
     {
@@ -28,22 +24,20 @@ public class ColoredEntity : NetworkBehaviour
         materialList[3] = Resources.Load<Material>("Green");
         materialList[4] = Resources.Load<Material>("Yellow");
 
-        //materialList[1] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Art/Materials/Blue.mat");
-        //materialList[2] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Art/Materials/Green.mat");
-        //materialList[3] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Art/Materials/Yellow.mat");
-        //materialList[4] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Art/Materials/Gray.mat");
-
+        /*
+        GameObject.FindWithTag("GameManager").GetComponent<gameManager>().addNewPlayer();
+        playerNum = GameObject.FindWithTag("GameManager").GetComponent<gameManager>().getNumberPlayers();
 
         if (this.gameObject.GetComponentInChildren<Renderer>() != null)
         {
-            this.gameObject.GetComponentInChildren<Renderer>().material = materialList[(int)curColor];
-        }
+            this.gameObject.GetComponentInChildren<Renderer>().material = materialList[(int)playerNum];
+        }*/
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -51,13 +45,13 @@ public class ColoredEntity : NetworkBehaviour
     {
 
     }
-
+    /*
     public void ReColor(EColor newColor)
     {
         curColor = newColor;
         if (this.gameObject.GetComponentInChildren<Renderer>() != null)
         {
-            this.gameObject.GetComponentInChildren<Renderer>().material = materialList[(int)curColor];
+            this.gameObject.GetComponentInChildren<Renderer>().material = materialList[(int)playerNum];
         }
-    }
+    }*/
 }

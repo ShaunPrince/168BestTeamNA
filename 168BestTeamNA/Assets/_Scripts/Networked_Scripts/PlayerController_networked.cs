@@ -1,26 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlayerController : ColoredEntity
+public class PlayerController_networked : NetworkBehaviour
 {
     public int moveSpeed;
     public Transform bulletPrefab;
-    public int bulletSpeed;
-    public Vector3 vectorLimit;
 
     public Camera myCam;
 
     private Rigidbody rb;
+    private int bulletSpeed;
+    private Vector3 rightVectorLimit;
+    private Vector3 leftVectorLimit;
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
+        bulletSpeed = 20;
+        rightVectorLimit = new Vector3(1.0f, 2.0f, 0.0f);
+        leftVectorLimit = new Vector3(-1.0f, 2.0f, 0.0f);
+
+        myCam = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isLocalPlayer)
+        {
+            return;
+        }
         UpdatePlayerState();
         myCam.transform.position = new Vector3(this.transform.position.x, myCam.transform.position.y, myCam.transform.position.z);
     }
@@ -29,8 +40,8 @@ public class PlayerController : ColoredEntity
     public void UpdatePlayerState()
     {
         UpdateMovement();
-        if (Input.GetMouseButtonDown(0))
-            Shoot();
+        //if (Input.GetMouseButtonDown(0))
+            //Shoot();
     }
 
     private void UpdateMovement()
@@ -39,6 +50,7 @@ public class PlayerController : ColoredEntity
         rb.AddForce(new Vector3(mov_x * moveSpeed, 0.0f, 0.0f));
     }
 
+    /*
     private void Shoot()
     {
         Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Mathf.Abs(Camera.main.transform.position.z));
@@ -49,6 +61,7 @@ public class PlayerController : ColoredEntity
         bullet.GetComponent<Bullet>().ReColor(curColor);
         Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
         bulletRb.velocity = bullet.transform.forward * bulletSpeed;
+
     }
 
     private Vector3 CheckTargetPos(Vector3 targetPos)
@@ -58,12 +71,9 @@ public class PlayerController : ColoredEntity
         if (angle > 45.0f)
         {
             if (targetPos.x > 0.0f)
-                newTargetPos = vectorLimit;
+                newTargetPos = rightVectorLimit;
             else
-            {
-                newTargetPos = vectorLimit;
-                newTargetPos.x = newTargetPos.x * -1.0f;
-            }
+                newTargetPos = leftVectorLimit;
         }
         else
         {
@@ -71,4 +81,5 @@ public class PlayerController : ColoredEntity
         }
         return newTargetPos;
     }
+    */
 }

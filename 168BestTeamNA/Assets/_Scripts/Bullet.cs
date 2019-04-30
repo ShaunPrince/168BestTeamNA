@@ -5,6 +5,8 @@ using UnityEngine;
 public class Bullet : ColoredEntity
 {
     public int damage;
+    private ColoredEntity.EColor playerColor;
+    private bool gotColor = false;
     //public float yVelocity;
 
     // Start is called before the first frame update
@@ -16,6 +18,8 @@ public class Bullet : ColoredEntity
     // Update is called once per frame
     void Update()
     {
+        ReColor(curColor);
+
 
     }
 
@@ -23,8 +27,8 @@ public class Bullet : ColoredEntity
     {
         if (collision.gameObject.GetComponent<DamagableEntity>() != null)
         {
-
-            collision.gameObject.GetComponent<DamagableEntity>().TakeDamage(damage, curColor);
+            
+            collision.gameObject.GetComponent<DamagableEntity>().TakeDamage(damage, this.curColor);
             Destroy(this.gameObject);
         }
 
@@ -34,11 +38,7 @@ public class Bullet : ColoredEntity
             Destroy(this.gameObject);
         }
 
-        if (collision.collider.tag.Equals("Projectile"))
-        {
-
-        }
-        else
+        if (!collision.collider.tag.Equals("Projectile"))
         {
             Destroy(this.gameObject);
         }

@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - Projectile
   - Floor
+  - GameManager
+  - NetworkManager
+  - EnemyManager
   layers:
   - Default
   - TransparentFX
@@ -21,7 +24,7 @@ TagManager:
   - Player
   - Enemy
   - Scenery
-  - 
+  - Bullets
   - 
   - 
   - 
