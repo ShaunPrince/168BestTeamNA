@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2682153458536269604}
   - component: {fileID: 1153979916567031659}
   - component: {fileID: 1254884220916982291}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Networked_Bullet
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 2682153459147825755}
   - component: {fileID: 2682153459147825754}
   - component: {fileID: 2682153459147825733}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
