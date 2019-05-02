@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 855633637936894349}
   - component: {fileID: 3404874432865740104}
   - component: {fileID: 3380810481623108197}
+  - component: {fileID: 6474258651753065605}
   m_Layer: 11
   m_Name: Networked_Astroid
   m_TagString: Untagged
@@ -66,6 +67,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curColor: 4
   health: 1
+  GameOverUI: {fileID: 0}
   damage: 5
   scaleFactor: 1
   glowRock: {fileID: 7684991825784658860}
@@ -124,6 +126,25 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!95 &6474258651753065605
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855633637936894336}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: abf4788052576da4fb582f6514b08d5d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &855633639244454983
 GameObject:
   m_ObjectHideFlags: 0
