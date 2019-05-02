@@ -9,12 +9,12 @@ public class DamagableEntity : ColoredEntity
 
 
     [SyncVar] public float health;
-    public GameObject GameOverUI;
+    //public GameObject GameOverUI;
 
     // Start is called before the first frame update
     void Start()
     {
-        GameOverUI.SetActive(false);
+        //GameOverUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class DamagableEntity : ColoredEntity
             if (this.health <= 0)
             {
                 Destroy(this.gameObject);
-                GameOverUI.SetActive(true);
+                //GameOverUI.SetActive(true);
             }
         }
 
