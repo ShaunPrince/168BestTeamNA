@@ -69,6 +69,7 @@ public class gameManager : NetworkBehaviour
         materialList[3] = Resources.Load<Material>("Green");
         materialList[4] = Resources.Load<Material>("Yellow");
 
+
     }
 
     // Update is called once per frame
@@ -87,6 +88,8 @@ public class gameManager : NetworkBehaviour
             // keep sending message until all players have recieved it >.<
             //if (playerStillMissingPlayerCount())  sendPlayerCount(numPlayers);
         }
+
+        //GameObject.Find("Floor").SetActive(true);
 
     }
 

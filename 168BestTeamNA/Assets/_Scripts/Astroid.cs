@@ -29,7 +29,7 @@ public class Astroid : DamagableEntity
     {
         if(collision.gameObject.GetComponentInParent<DamagableEntity>() != null)
         {
-            collision.gameObject.GetComponentInParent<DamagableEntity>().TakeDamage(damage,this.curColor);
+            collision.gameObject.GetComponentInParent<DamagableEntity>().TakeDamage(damage, this.curColor);
             Destroy(this.gameObject);
         }
     }
