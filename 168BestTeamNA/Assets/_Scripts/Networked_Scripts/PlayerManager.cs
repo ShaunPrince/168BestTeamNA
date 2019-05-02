@@ -18,7 +18,7 @@ public class PlayerManager : NetworkBehaviour
     private NumberOfPlayers PlayerCountMsg;
 
     private int myColor;
-    private Renderer myRenderer;
+    public Renderer myRenderer;
     private bool setColor = false;
     private int setColorCounter = 0;
     private int setColorCounterMax = 10;
@@ -53,7 +53,7 @@ public class PlayerManager : NetworkBehaviour
 
     void Awake()
     {
-        myRenderer = this.gameObject.GetComponentInChildren<Renderer>();
+     
     }
 
     void Update()
