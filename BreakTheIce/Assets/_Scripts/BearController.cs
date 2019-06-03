@@ -39,7 +39,6 @@ public class BearController : MonoBehaviour
 
     private void CheckInput()
     {
-        if()
         if(Input.GetKeyDown(KeyCode.W))
         {
             deltaZ += gridSize;
